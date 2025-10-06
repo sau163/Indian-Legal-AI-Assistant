@@ -482,3 +482,42 @@ CUDA kernel errors might be asynchronously reported at some other API call, so t
 For debugging consider passing CUDA_LAUNCH_BLOCKING=1
 Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
 
+2025-10-06 15:22:38,986 - __main__ - INFO - ================================================================================
+2025-10-06 15:22:38,987 - __main__ - INFO - Legal AI Assistant Training
+2025-10-06 15:22:38,987 - __main__ - INFO - ================================================================================
+2025-10-06 15:22:38,987 - __main__ - WARNING - Detected Windows OS: disabling 4/8-bit quantization and Flash Attention by default. Use --force-quantization to override at your own risk.
+2025-10-06 15:22:38,987 - __main__ - INFO - Model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:22:38,987 - __main__ - INFO - Dataset: nisaar/Articles_Constitution_3300_Instruction_Set
+2025-10-06 15:22:38,987 - __main__ - INFO - Output: ./output_smoke_cpu
+2025-10-06 15:22:38,987 - __main__ - INFO - Epochs: 1
+2025-10-06 15:22:38,987 - __main__ - INFO - Batch size: 1
+2025-10-06 15:22:38,987 - __main__ - INFO - Learning rate: 0.0002
+2025-10-06 15:22:38,987 - training.trainer - INFO - ================================================================================
+2025-10-06 15:22:38,987 - training.trainer - INFO - Starting Legal AI Training Pipeline
+2025-10-06 15:22:38,987 - training.trainer - INFO - ================================================================================
+2025-10-06 15:22:38,987 - training.trainer - INFO - Setting up trainer...
+2025-10-06 15:22:38,987 - models.model_factory - INFO - Loading base model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:22:38,987 - models.model_factory - INFO - Quantization disabled: not passing quantization_config to from_pretrained
+2025-10-06 15:22:41,709 - models.model_factory - INFO - Model loaded successfully: MistralForCausalLM
+2025-10-06 15:22:41,709 - models.model_factory - INFO - Model device: cpu
+2025-10-06 15:22:41,713 - models.model_factory - INFO - Preparing model for training...
+2025-10-06 15:22:41,717 - models.model_factory - INFO - Skipping k-bit preparation because quantization is disabled
+2025-10-06 15:22:45,431 - models.model_factory - INFO - Trainable params: 6,815,744 || All params: 7,248,547,840 || Trainable%: 0.0940%
+2025-10-06 15:22:45,431 - training.trainer - INFO - Preparing dataset...
+2025-10-06 15:22:45,431 - data.data_processor - INFO - Loading dataset nisaar/Articles_Constitution_3300_Instruction_Set (split: train) via DatasetLoader
+2025-10-06 15:22:45,431 - data.dataset_loader - INFO - Loading dataset from Hub: nisaar/Articles_Constitution_3300_Instruction_Set
+2025-10-06 15:22:50,899 - data.dataset_loader - INFO - Successfully loaded 3311 examples
+2025-10-06 15:22:50,899 - data.data_processor - INFO - Dataset validation passed
+2025-10-06 15:22:50,899 - data.data_processor - INFO - Splitting dataset (train: 0.9, val: 0.1, test: 0.0)
+2025-10-06 15:22:50,914 - data.data_processor - INFO - train: 2979 examples
+2025-10-06 15:22:50,914 - data.data_processor - INFO - validation: 332 examples
+2025-10-06 15:22:50,914 - data.data_processor - INFO - Tokenizing dataset...
+2025-10-06 15:22:50,963 - data.data_processor - INFO - Tokenization complete. Dataset size: 2979
+2025-10-06 15:22:50,963 - data.data_processor - INFO - Tokenizing dataset...
+2025-10-06 15:22:51,031 - data.data_processor - INFO - Tokenization complete. Dataset size: 332
+2025-10-06 15:22:51,031 - training.trainer - INFO - Dataset preparation complete
+2025-10-06 15:22:51,031 - training.trainer - INFO - Creating trainer...
+2025-10-06 15:22:51,031 - training.trainer - INFO - Model on CPU: forcing Trainer to run with no_cuda=True
+2025-10-06 15:22:51,227 - training.trainer - INFO - Trainer created
+2025-10-06 15:22:51,227 - training.trainer - INFO - Setup complete
+2025-10-06 15:22:51,227 - training.trainer - INFO - Starting training...

@@ -289,9 +289,6 @@ Contributions welcome! Please:
 3. Add tests for new features
 4. Submit a pull request
 
-## License
-
-MIT License - see LICENSE file for details
 
 ## Citation
 
@@ -308,6 +305,32 @@ If you use this code in your research, please cite:
 
 ## Acknowledgments
 
-- Original work: [Indian-LawyerGPT](https://github.com/NisaarAgharia/Indian-LawyerGPT)
 - Dataset: nisaar/Lawyer_GPT_India on HuggingFace
 - Base models: Mistral AI, Meta, Google, Microsoft, TII
+
+## License
+
+This project is released under the MIT License. You are free to use, modify,
+and distribute the source code, provided that you include the original MIT
+license notice in any substantial portions of the software.
+
+Please note the following important licensing and usage considerations:
+
+- Third-party models and datasets referenced by this project (for example,
+  models from Hugging Face such as `mistralai/Mistral-7B-Instruct-v0.2`) are governed by their own licenses and access terms. Some models are gated or have usage restrictions — make
+  sure you review and comply with the license and terms of service for any
+  model or dataset you download or use.
+
+- When pushing fine-tuned models derived from third-party base models to a
+  public hub, check whether redistribution of derivative models is permitted
+  by the base model's license. If in doubt, keep your model private or contact
+  the model authors for permission.
+
+- This repository may include small utility scripts, configuration files, and
+  example code meant to help you run experiments. Those portions are covered
+  by the MIT License included with this repository.
+
+If you want to use a different license for your derived work, feel free to do
+so for your own fork or distribution, but the original project files that are
+derived from this repository must continue to include the original MIT license
+notice.
