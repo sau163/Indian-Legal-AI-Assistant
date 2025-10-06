@@ -51,12 +51,32 @@ class LegalAIPredictor:
     ) -> "LegalAIPredictor":
         
         logger.info(f"Loading predictor from: {model_path}")
-        
-        model, tokenizer = ModelFactory.load_finetuned_model(
-            model_path,
-            model_config,
-        )
-        
+        # Try loading as a PEFT/adapter fine-tuned model first (common case
+        # when using LoRA). If that fails because adapter files are missing,
+        # fall back to loading a base pretrained model from the provided path
+        # (local dir or HuggingFace Hub id).
+        try:
+            model, tokenizer = ModelFactory.load_finetuned_model(
+                model_path,
+                model_config,
+            )
+
+        except Exception as e:
+            logger.warning(f"PEFT/adapter load failed: {e}")
+            logger.info("Falling back to loading base pretrained model...")
+
+            # Build a minimal ModelConfig if one was not supplied
+            if model_config is None:
+                model_config = ModelConfig()
+            model_config.model_name = model_path
+
+            # Default to CPU device_map for safety when running in varied
+            # environments (the API can be configured to use GPU by setting
+            # MODEL_PATH or ModelConfig appropriately).
+            model_config.device_map = getattr(model_config, "device_map", "cpu") or "cpu"
+
+            model, tokenizer = ModelFactory.load_base_model(model_config)
+
         return cls(
             model=model,
             tokenizer=tokenizer,
