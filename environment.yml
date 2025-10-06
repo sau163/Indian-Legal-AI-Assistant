@@ -1,0 +1,47 @@
+name: The-Law-Book
+channels:
+  - defaults
+  - conda-forge
+  - nvidia  # for CUDA-enabled PyTorch if needed
+dependencies:
+  - python=3.10
+  - pip>=23.0
+  - pip:
+      # Core dependencies
+      - torch>=2.0.1
+      - transformers>=4.35.0
+      - accelerate>=0.24.0
+      - peft>=0.6.0
+      - bitsandbytes>=0.41.0
+      - datasets>=2.14.0
+
+      # Training and optimization
+      - sentencepiece>=0.1.99
+      - protobuf>=3.20.0
+      - tensorboard>=2.14.0
+      - wandb>=0.15.0
+
+      # API dependencies
+      - fastapi>=0.104.0
+      - uvicorn[standard]>=0.24.0
+      - pydantic>=2.4.0
+      - python-multipart>=0.0.6
+
+      # Data processing
+      - pandas>=2.0.0
+      - numpy>=1.24.0
+      - scikit-learn>=1.3.0
+
+      # Utilities
+      - python-dotenv>=1.0.0
+      - tqdm>=4.66.0
+      - coloredlogs>=15.0
+
+      # Testing
+      - pytest>=7.4.0
+      - pytest-cov>=4.1.0
+      - httpx>=0.25.0
+
+      # Optional: for specific models
+      - einops>=0.7.0
+

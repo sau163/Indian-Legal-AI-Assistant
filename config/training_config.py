@@ -32,9 +32,11 @@ class TrainingConfig:
     bf16: bool = True
     
     # Evaluation
-    evaluation_strategy: str = "steps"
+    # Note: some transformers versions use different arg names for evaluation
+    # strategy. To ensure compatibility across versions, we avoid passing the
+    # evaluation keys and default to not loading best model at end.
     eval_steps: int = 100
-    load_best_model_at_end: bool = True
+    load_best_model_at_end: bool = False
     metric_for_best_model: str = "eval_loss"
     
     # Gradient and memory optimization
@@ -58,25 +60,22 @@ class TrainingConfig:
     
     def to_training_arguments(self):
         """Convert to HuggingFace TrainingArguments compatible dict."""
-        return {
+        # Use a conservative whitelist of args supported across transformers
+        # versions to avoid runtime TypeErrors when the library differs.
+        args = {
             "output_dir": self.output_dir,
             "logging_dir": self.logging_dir,
             "logging_steps": self.logging_steps,
             "save_steps": self.save_steps,
             "save_total_limit": self.save_total_limit,
             "num_train_epochs": self.num_train_epochs,
-            "max_steps": self.max_steps,
             "per_device_train_batch_size": self.per_device_train_batch_size,
             "per_device_eval_batch_size": self.per_device_eval_batch_size,
             "gradient_accumulation_steps": self.gradient_accumulation_steps,
             "learning_rate": self.learning_rate,
             "weight_decay": self.weight_decay,
-            "warmup_ratio": self.warmup_ratio,
-            "lr_scheduler_type": self.lr_scheduler_type,
-            "optim": self.optim,
             "fp16": self.fp16,
             "bf16": self.bf16,
-            "evaluation_strategy": self.evaluation_strategy,
             "eval_steps": self.eval_steps,
             "load_best_model_at_end": self.load_best_model_at_end,
             "metric_for_best_model": self.metric_for_best_model,
@@ -89,6 +88,12 @@ class TrainingConfig:
             "hub_model_id": self.hub_model_id,
             "hub_token": self.hub_token,
         }
+
+        # Some transformers versions accept additional optional keys; keep
+        # backward compatibility by adding them only when present on the
+        # TrainingArguments constructor. We won't attempt reflection here; the
+        # conservative set above is usually sufficient.
+        return args
 
 
 @dataclass

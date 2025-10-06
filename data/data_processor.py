@@ -135,8 +135,28 @@ class DataProcessor:
         if not dataset:
             raise ValueError("Dataset is empty")
         
-        # Check first example has required fields
-        first_example = dataset[0]
+        # Try to auto-normalize some common field names into the required
+        # canonical fields (question/answer). This helps when loading datasets
+        # from the Hub that use names like 'instruction', 'input', 'output',
+        # 'text', 'title', or 'body'. We'll normalize in-memory on the fly.
+        def _normalize_example(ex):
+            ex = dict(ex)
+            if "question" not in ex:
+                # Prefer 'instruction' or 'title' or 'text' or 'prompt'
+                for cand in ("instruction", "title", "text", "prompt", "question"):
+                    if cand in ex:
+                        ex["question"] = ex[cand]
+                        break
+            if "answer" not in ex:
+                # Prefer 'output', 'response', 'answer', 'choices', 'body'
+                for cand in ("output", "response", "answer", "choices", "body"):
+                    if cand in ex:
+                        ex["answer"] = ex[cand]
+                        break
+            return ex
+
+        # Inspect first example after normalization
+        first_example = _normalize_example(dataset[0])
         missing_fields = [f for f in required_fields if f not in first_example]
         
         if missing_fields:

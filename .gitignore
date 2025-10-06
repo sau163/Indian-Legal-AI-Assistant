@@ -1,0 +1,16 @@
+# Ignore environment files
+.env
+.vs
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+
+# Ignore virtual environment directories
+QUICKSTART.md
+Miniconda3-latest-Linux-x86_64.sh
+model_cache/
+output_smoke_cpu/

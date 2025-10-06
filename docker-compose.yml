@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  legal-ai-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: legal-ai-assistant:latest
+    container_name: legal-ai-api
+    ports:
+      - "8000:8000"
+    environment:
+      - MODEL_PATH=${MODEL_PATH:-nisaar/falcon7b-Indian_Law_150Prompts}
+      - CUDA_VISIBLE_DEVICES=0
+      - PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:512
+    volumes:
+      - ./model_cache:/app/model_cache
+      - ./logs:/app/logs
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Optional: TensorBoard for monitoring
+  tensorboard:
+    image: tensorflow/tensorflow:latest
+    container_name: legal-ai-tensorboard
+    ports:
+      - "6006:6006"
+    volumes:
+      - ./logs:/logs
+    command: tensorboard --logdir=/logs --host=0.0.0.0
+    restart: unless-stopped
+
+volumes:
+  model_cache:
+  logs:

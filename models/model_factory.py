@@ -76,14 +76,34 @@ class ModelFactory:
             "use_auth_token": os.getenv("HUGGINGFACE_HUB_TOKEN") or os.getenv("HUGGINGFACE_TOKEN"),
         }
         
-        # Add flash attention if supported and requested
+        # Add flash attention if requested and the package is actually installed.
+        # Transformers may raise an ImportError during model init if flash_attn
+        # isn't installed but an attn implementation is requested. Guard here
+        # so training can continue without flash_attn on platforms where it's
+        # not available (Windows, or when user hasn't installed it).
         if config.use_flash_attention:
             try:
-                model_kwargs["attn_implementation"] = "flash_attention_2"
-                logger.info("Using Flash Attention 2")
+                # Only enable flash attention 2 if the flash_attn package exists.
+                import importlib.util
+
+                if importlib.util.find_spec("flash_attn") is not None:
+                    model_kwargs["attn_implementation"] = "flash_attention_2"
+                    logger.info("Using Flash Attention 2")
+                else:
+                    logger.warning(
+                        "Flash Attention requested but package 'flash_attn' not found; continuing without it."
+                    )
             except Exception as e:
-                logger.warning(f"Flash Attention not available: {e}")
+                logger.warning(f"Flash Attention check failed, continuing without it: {e}")
         
+        # If quantization is fully disabled, avoid passing the BitsAndBytes config
+        # to Transformers; otherwise Transformers will attempt to use bnb and may
+        # trigger CUDA kernels on incompatible GPUs or when bitsandbytes is
+        # installed but not desired.
+        if not (bnb_config.load_in_4bit or bnb_config.load_in_8bit):
+            model_kwargs.pop("quantization_config", None)
+            logger.info("Quantization disabled: not passing quantization_config to from_pretrained")
+
         # Load model
         model = AutoModelForCausalLM.from_pretrained(**model_kwargs)
         
@@ -115,9 +135,16 @@ class ModelFactory:
         
         # Enable gradient checkpointing
         model.gradient_checkpointing_enable()
-        
-        # Prepare for k-bit training
-        model = prepare_model_for_kbit_training(model)
+
+        # Prepare for k-bit training only when quantization is enabled.
+        # If quantization is disabled (both 4-bit and 8-bit off) skip this
+        # step to avoid device-side conversions that may trigger CUDA
+        # kernels on incompatible systems.
+        if config.quantization.load_in_4bit or config.quantization.load_in_8bit:
+            logger.info("Preparing model for k-bit training (quantization enabled)")
+            model = prepare_model_for_kbit_training(model)
+        else:
+            logger.info("Skipping k-bit preparation because quantization is disabled")
         
         # Create and apply LoRA config
         lora_config = ModelFactory.create_lora_config(config)

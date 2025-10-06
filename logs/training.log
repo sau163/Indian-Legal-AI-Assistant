@@ -1,0 +1,484 @@
+2025-10-06 15:09:28,021 - __main__ - INFO - ================================================================================
+2025-10-06 15:09:28,021 - __main__ - INFO - Legal AI Assistant Training
+2025-10-06 15:09:28,021 - __main__ - INFO - ================================================================================
+2025-10-06 15:09:28,021 - __main__ - WARNING - Detected Windows OS: disabling 4/8-bit quantization and Flash Attention by default. Use --force-quantization to override at your own risk.
+2025-10-06 15:09:28,021 - __main__ - INFO - Model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:09:28,021 - __main__ - INFO - Dataset: nisaar/Articles_Constitution_3300_Instruction_Set
+2025-10-06 15:09:28,021 - __main__ - INFO - Output: ./output_smoke
+2025-10-06 15:09:28,021 - __main__ - INFO - Epochs: 1
+2025-10-06 15:09:28,021 - __main__ - INFO - Batch size: 1
+2025-10-06 15:09:28,021 - __main__ - INFO - Learning rate: 0.0002
+2025-10-06 15:09:28,021 - training.trainer - INFO - ================================================================================
+2025-10-06 15:09:28,021 - training.trainer - INFO - Starting Legal AI Training Pipeline
+2025-10-06 15:09:28,021 - training.trainer - INFO - ================================================================================
+2025-10-06 15:09:28,021 - training.trainer - INFO - Setting up trainer...
+2025-10-06 15:09:28,021 - models.model_factory - INFO - Loading base model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:09:34,459 - __main__ - ERROR - Training failed: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+Traceback (most recent call last):
+  File "D:\Code\The_Law_Book\scripts\train.py", line 297, in main
+    trainer.run()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 223, in run
+    self.setup()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 53, in setup
+    self.model, self.tokenizer = ModelFactory.load_base_model(
+  File "D:\Code\The_Law_Book\models\model_factory.py", line 100, in load_base_model
+    model = AutoModelForCausalLM.from_pretrained(**model_kwargs)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\models\auto\auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\modeling_utils.py", line 5051, in from_pretrained
+    ) = cls._load_pretrained_model(
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\modeling_utils.py", line 5471, in _load_pretrained_model
+    _error_msgs, disk_offload_index = load_shard_file(args)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\modeling_utils.py", line 847, in load_shard_file
+    disk_offload_index = _load_state_dict_into_meta_model(
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\modeling_utils.py", line 774, in _load_state_dict_into_meta_model
+    hf_quantizer.create_quantized_param(model, param, param_name, param_device)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\quantizers\quantizer_bnb_4bit.py", line 222, in create_quantized_param
+    new_value = bnb.nn.Params4bit(new_value, requires_grad=False, **kwargs).to(target_device)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\bitsandbytes\nn\modules.py", line 337, in to
+    return self._quantize(device)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\bitsandbytes\nn\modules.py", line 296, in _quantize
+    w_4bit, quant_state = bnb.functional.quantize_4bit(
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\bitsandbytes\functional.py", line 871, in quantize_4bit
+    code = get_4bit_type(quant_type, device=A.device)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\bitsandbytes\functional.py", line 793, in get_4bit_type
+    data.div_(data.abs().max())
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+2025-10-06 15:11:10,671 - __main__ - INFO - ================================================================================
+2025-10-06 15:11:10,671 - __main__ - INFO - Legal AI Assistant Training
+2025-10-06 15:11:10,671 - __main__ - INFO - ================================================================================
+2025-10-06 15:11:10,671 - __main__ - WARNING - Detected Windows OS: disabling 4/8-bit quantization and Flash Attention by default. Use --force-quantization to override at your own risk.
+2025-10-06 15:11:10,671 - __main__ - INFO - Model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:11:10,671 - __main__ - INFO - Dataset: nisaar/Articles_Constitution_3300_Instruction_Set
+2025-10-06 15:11:10,671 - __main__ - INFO - Output: ./output_smoke
+2025-10-06 15:11:10,671 - __main__ - INFO - Epochs: 1
+2025-10-06 15:11:10,671 - __main__ - INFO - Batch size: 1
+2025-10-06 15:11:10,671 - __main__ - INFO - Learning rate: 0.0002
+2025-10-06 15:11:10,671 - training.trainer - INFO - ================================================================================
+2025-10-06 15:11:10,671 - training.trainer - INFO - Starting Legal AI Training Pipeline
+2025-10-06 15:11:10,671 - training.trainer - INFO - ================================================================================
+2025-10-06 15:11:10,671 - training.trainer - INFO - Setting up trainer...
+2025-10-06 15:11:10,671 - models.model_factory - INFO - Loading base model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:11:16,298 - __main__ - ERROR - Training failed: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+Traceback (most recent call last):
+  File "D:\Code\The_Law_Book\scripts\train.py", line 297, in main
+    trainer.run()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 223, in run
+    self.setup()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 53, in setup
+    self.model, self.tokenizer = ModelFactory.load_base_model(
+  File "D:\Code\The_Law_Book\models\model_factory.py", line 100, in load_base_model
+    model = AutoModelForCausalLM.from_pretrained(**model_kwargs)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\models\auto\auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\modeling_utils.py", line 5051, in from_pretrained
+    ) = cls._load_pretrained_model(
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\modeling_utils.py", line 5471, in _load_pretrained_model
+    _error_msgs, disk_offload_index = load_shard_file(args)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\modeling_utils.py", line 847, in load_shard_file
+    disk_offload_index = _load_state_dict_into_meta_model(
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\modeling_utils.py", line 774, in _load_state_dict_into_meta_model
+    hf_quantizer.create_quantized_param(model, param, param_name, param_device)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\quantizers\quantizer_bnb_4bit.py", line 222, in create_quantized_param
+    new_value = bnb.nn.Params4bit(new_value, requires_grad=False, **kwargs).to(target_device)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\bitsandbytes\nn\modules.py", line 337, in to
+    return self._quantize(device)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\bitsandbytes\nn\modules.py", line 296, in _quantize
+    w_4bit, quant_state = bnb.functional.quantize_4bit(
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\bitsandbytes\functional.py", line 871, in quantize_4bit
+    code = get_4bit_type(quant_type, device=A.device)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\bitsandbytes\functional.py", line 793, in get_4bit_type
+    data.div_(data.abs().max())
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+2025-10-06 15:11:58,112 - __main__ - INFO - ================================================================================
+2025-10-06 15:11:58,112 - __main__ - INFO - Legal AI Assistant Training
+2025-10-06 15:11:58,112 - __main__ - INFO - ================================================================================
+2025-10-06 15:11:58,112 - __main__ - WARNING - Detected Windows OS: disabling 4/8-bit quantization and Flash Attention by default. Use --force-quantization to override at your own risk.
+2025-10-06 15:11:58,112 - __main__ - INFO - Model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:11:58,112 - __main__ - INFO - Dataset: nisaar/Articles_Constitution_3300_Instruction_Set
+2025-10-06 15:11:58,112 - __main__ - INFO - Output: ./output_smoke
+2025-10-06 15:11:58,112 - __main__ - INFO - Epochs: 1
+2025-10-06 15:11:58,112 - __main__ - INFO - Batch size: 1
+2025-10-06 15:11:58,112 - __main__ - INFO - Learning rate: 0.0002
+2025-10-06 15:11:58,112 - training.trainer - INFO - ================================================================================
+2025-10-06 15:11:58,112 - training.trainer - INFO - Starting Legal AI Training Pipeline
+2025-10-06 15:11:58,112 - training.trainer - INFO - ================================================================================
+2025-10-06 15:11:58,117 - training.trainer - INFO - Setting up trainer...
+2025-10-06 15:11:58,117 - models.model_factory - INFO - Loading base model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:11:58,117 - models.model_factory - INFO - Quantization disabled: not passing quantization_config to from_pretrained
+2025-10-06 15:12:26,087 - __main__ - ERROR - Training failed: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2.
+401 Client Error. (Request ID: Root=1-68e38f04-14ad26e36684f811623e9af6;c76aa118-0a39-47d8-b3fb-4ee2fb2b1774)
+
+Cannot access gated repo for url https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2/resolve/main/tokenizer_config.json.
+Access to model mistralai/Mistral-7B-Instruct-v0.2 is restricted. You must have access to it and be authenticated to access it. Please log in.
+Traceback (most recent call last):
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\huggingface_hub\utils\_http.py", line 407, in hf_raise_for_status
+    response.raise_for_status()
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\requests\models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2/resolve/main/tokenizer_config.json
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\utils\hub.py", line 479, in cached_files
+    hf_hub_download(
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\huggingface_hub\file_download.py", line 1010, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\huggingface_hub\file_download.py", line 1117, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\huggingface_hub\file_download.py", line 1658, in _raise_on_head_call_error
+    raise head_call_error
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\huggingface_hub\file_download.py", line 1546, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\huggingface_hub\file_download.py", line 1463, in get_hf_file_metadata
+    r = _request_wrapper(
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\huggingface_hub\file_download.py", line 286, in _request_wrapper
+    response = _request_wrapper(
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\huggingface_hub\file_download.py", line 310, in _request_wrapper
+    hf_raise_for_status(response)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\huggingface_hub\utils\_http.py", line 424, in hf_raise_for_status
+    raise _format(GatedRepoError, message, response) from e
+huggingface_hub.errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-68e38f04-14ad26e36684f811623e9af6;c76aa118-0a39-47d8-b3fb-4ee2fb2b1774)
+
+Cannot access gated repo for url https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2/resolve/main/tokenizer_config.json.
+Access to model mistralai/Mistral-7B-Instruct-v0.2 is restricted. You must have access to it and be authenticated to access it. Please log in.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Code\The_Law_Book\scripts\train.py", line 297, in main
+    trainer.run()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 223, in run
+    self.setup()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 53, in setup
+    self.model, self.tokenizer = ModelFactory.load_base_model(
+  File "D:\Code\The_Law_Book\models\model_factory.py", line 111, in load_base_model
+    tokenizer = AutoTokenizer.from_pretrained(
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\models\auto\tokenization_auto.py", line 1159, in from_pretrained
+    return tokenizer_class_fast.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\tokenization_utils_base.py", line 1993, in from_pretrained
+    resolved_config_file = cached_file(
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\utils\hub.py", line 322, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\utils\hub.py", line 543, in cached_files
+    raise OSError(
+OSError: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2.
+401 Client Error. (Request ID: Root=1-68e38f04-14ad26e36684f811623e9af6;c76aa118-0a39-47d8-b3fb-4ee2fb2b1774)
+
+Cannot access gated repo for url https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2/resolve/main/tokenizer_config.json.
+Access to model mistralai/Mistral-7B-Instruct-v0.2 is restricted. You must have access to it and be authenticated to access it. Please log in.
+2025-10-06 15:13:30,205 - __main__ - INFO - ================================================================================
+2025-10-06 15:13:30,205 - __main__ - INFO - Legal AI Assistant Training
+2025-10-06 15:13:30,210 - __main__ - INFO - ================================================================================
+2025-10-06 15:13:30,210 - __main__ - WARNING - Detected Windows OS: disabling 4/8-bit quantization and Flash Attention by default. Use --force-quantization to override at your own risk.
+2025-10-06 15:13:30,210 - __main__ - INFO - Model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:13:30,210 - __main__ - INFO - Dataset: nisaar/Articles_Constitution_3300_Instruction_Set
+2025-10-06 15:13:30,211 - __main__ - INFO - Output: ./output_smoke
+2025-10-06 15:13:30,211 - __main__ - INFO - Epochs: 1
+2025-10-06 15:13:30,211 - __main__ - INFO - Batch size: 1
+2025-10-06 15:13:30,211 - __main__ - INFO - Learning rate: 0.0002
+2025-10-06 15:13:30,211 - training.trainer - INFO - ================================================================================
+2025-10-06 15:13:30,211 - training.trainer - INFO - Starting Legal AI Training Pipeline
+2025-10-06 15:13:30,211 - training.trainer - INFO - ================================================================================
+2025-10-06 15:13:30,211 - training.trainer - INFO - Setting up trainer...
+2025-10-06 15:13:30,211 - models.model_factory - INFO - Loading base model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:13:30,211 - models.model_factory - INFO - Quantization disabled: not passing quantization_config to from_pretrained
+2025-10-06 15:14:00,099 - huggingface_hub.file_download - WARNING - Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2025-10-06 15:14:03,800 - models.model_factory - INFO - Model loaded successfully: MistralForCausalLM
+2025-10-06 15:14:03,800 - models.model_factory - INFO - Model device: cuda:0
+2025-10-06 15:14:03,800 - models.model_factory - INFO - Preparing model for training...
+2025-10-06 15:14:03,942 - __main__ - ERROR - Training failed: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+Traceback (most recent call last):
+  File "D:\Code\The_Law_Book\scripts\train.py", line 297, in main
+    trainer.run()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 223, in run
+    self.setup()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 58, in setup
+    self.model = ModelFactory.prepare_model_for_training(
+  File "D:\Code\The_Law_Book\models\model_factory.py", line 140, in prepare_model_for_training
+    model = prepare_model_for_kbit_training(model)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\peft\utils\other.py", line 156, in prepare_model_for_kbit_training
+    param.data = param.data.to(torch.float32)
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+2025-10-06 15:15:52,347 - __main__ - INFO - ================================================================================
+2025-10-06 15:15:52,348 - __main__ - INFO - Legal AI Assistant Training
+2025-10-06 15:15:52,348 - __main__ - INFO - ================================================================================
+2025-10-06 15:15:52,348 - __main__ - WARNING - Detected Windows OS: disabling 4/8-bit quantization and Flash Attention by default. Use --force-quantization to override at your own risk.
+2025-10-06 15:15:52,348 - __main__ - INFO - Model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:15:52,348 - __main__ - INFO - Dataset: nisaar/Articles_Constitution_3300_Instruction_Set
+2025-10-06 15:15:52,348 - __main__ - INFO - Output: ./output_smoke_cpu
+2025-10-06 15:15:52,348 - __main__ - INFO - Epochs: 1
+2025-10-06 15:15:52,348 - __main__ - INFO - Batch size: 1
+2025-10-06 15:15:52,348 - __main__ - INFO - Learning rate: 0.0002
+2025-10-06 15:15:52,348 - training.trainer - INFO - ================================================================================
+2025-10-06 15:15:52,348 - training.trainer - INFO - Starting Legal AI Training Pipeline
+2025-10-06 15:15:52,348 - training.trainer - INFO - ================================================================================
+2025-10-06 15:15:52,348 - training.trainer - INFO - Setting up trainer...
+2025-10-06 15:15:52,348 - models.model_factory - INFO - Loading base model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:15:52,348 - models.model_factory - INFO - Quantization disabled: not passing quantization_config to from_pretrained
+2025-10-06 15:15:54,973 - models.model_factory - INFO - Model loaded successfully: MistralForCausalLM
+2025-10-06 15:15:54,973 - models.model_factory - INFO - Model device: cpu
+2025-10-06 15:15:54,978 - models.model_factory - INFO - Preparing model for training...
+2025-10-06 15:16:24,614 - models.model_factory - INFO - Trainable params: 6,815,744 || All params: 7,248,547,840 || Trainable%: 0.0940%
+2025-10-06 15:16:24,616 - training.trainer - INFO - Preparing dataset...
+2025-10-06 15:16:24,616 - data.data_processor - INFO - Loading dataset nisaar/Articles_Constitution_3300_Instruction_Set (split: train) via DatasetLoader
+2025-10-06 15:16:24,616 - data.dataset_loader - INFO - Loading dataset from Hub: nisaar/Articles_Constitution_3300_Instruction_Set
+2025-10-06 15:16:30,239 - data.dataset_loader - INFO - Successfully loaded 3311 examples
+2025-10-06 15:16:30,240 - __main__ - ERROR - Training failed: Dataset missing required fields: ['question', 'answer']. Required fields: ['question', 'answer']
+Traceback (most recent call last):
+  File "D:\Code\The_Law_Book\scripts\train.py", line 297, in main
+    trainer.run()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 223, in run
+    self.setup()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 64, in setup
+    self._prepare_dataset()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 95, in _prepare_dataset
+    processor.validate_dataset(dataset)
+  File "D:\Code\The_Law_Book\data\data_processor.py", line 143, in validate_dataset
+    raise ValueError(
+ValueError: Dataset missing required fields: ['question', 'answer']. Required fields: ['question', 'answer']
+2025-10-06 15:17:57,571 - __main__ - INFO - ================================================================================
+2025-10-06 15:17:57,571 - __main__ - INFO - Legal AI Assistant Training
+2025-10-06 15:17:57,571 - __main__ - INFO - ================================================================================
+2025-10-06 15:17:57,571 - __main__ - WARNING - Detected Windows OS: disabling 4/8-bit quantization and Flash Attention by default. Use --force-quantization to override at your own risk.
+2025-10-06 15:17:57,571 - __main__ - INFO - Model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:17:57,571 - __main__ - INFO - Dataset: nisaar/Articles_Constitution_3300_Instruction_Set
+2025-10-06 15:17:57,571 - __main__ - INFO - Output: ./output_smoke_cpu
+2025-10-06 15:17:57,571 - __main__ - INFO - Epochs: 1
+2025-10-06 15:17:57,571 - __main__ - INFO - Batch size: 1
+2025-10-06 15:17:57,571 - __main__ - INFO - Learning rate: 0.0002
+2025-10-06 15:17:57,571 - training.trainer - INFO - ================================================================================
+2025-10-06 15:17:57,571 - training.trainer - INFO - Starting Legal AI Training Pipeline
+2025-10-06 15:17:57,571 - training.trainer - INFO - ================================================================================
+2025-10-06 15:17:57,571 - training.trainer - INFO - Setting up trainer...
+2025-10-06 15:17:57,571 - models.model_factory - INFO - Loading base model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:17:57,571 - models.model_factory - INFO - Quantization disabled: not passing quantization_config to from_pretrained
+2025-10-06 15:18:00,338 - models.model_factory - INFO - Model loaded successfully: MistralForCausalLM
+2025-10-06 15:18:00,338 - models.model_factory - INFO - Model device: cpu
+2025-10-06 15:18:00,338 - models.model_factory - INFO - Preparing model for training...
+2025-10-06 15:18:00,340 - models.model_factory - INFO - Skipping k-bit preparation because quantization is disabled
+2025-10-06 15:18:03,786 - models.model_factory - INFO - Trainable params: 6,815,744 || All params: 7,248,547,840 || Trainable%: 0.0940%
+2025-10-06 15:18:03,786 - training.trainer - INFO - Preparing dataset...
+2025-10-06 15:18:03,786 - data.data_processor - INFO - Loading dataset nisaar/Articles_Constitution_3300_Instruction_Set (split: train) via DatasetLoader
+2025-10-06 15:18:03,786 - data.dataset_loader - INFO - Loading dataset from Hub: nisaar/Articles_Constitution_3300_Instruction_Set
+2025-10-06 15:18:09,283 - data.dataset_loader - INFO - Successfully loaded 3311 examples
+2025-10-06 15:18:09,283 - data.data_processor - INFO - Dataset validation passed
+2025-10-06 15:18:09,309 - data.data_processor - INFO - Splitting dataset (train: 0.9, val: 0.1, test: 0.0)
+2025-10-06 15:18:09,327 - data.data_processor - INFO - train: 2979 examples
+2025-10-06 15:18:09,327 - data.data_processor - INFO - validation: 332 examples
+2025-10-06 15:18:09,331 - data.data_processor - INFO - Tokenizing dataset...
+2025-10-06 15:18:22,218 - data.data_processor - INFO - Tokenization complete. Dataset size: 2979
+2025-10-06 15:18:22,218 - data.data_processor - INFO - Tokenizing dataset...
+2025-10-06 15:18:34,449 - data.data_processor - INFO - Tokenization complete. Dataset size: 332
+2025-10-06 15:18:34,449 - training.trainer - INFO - Dataset preparation complete
+2025-10-06 15:18:34,449 - training.trainer - INFO - Creating trainer...
+2025-10-06 15:18:34,449 - __main__ - ERROR - Training failed: TrainingArguments.__init__() got an unexpected keyword argument 'evaluation_strategy'
+Traceback (most recent call last):
+  File "D:\Code\The_Law_Book\scripts\train.py", line 297, in main
+    trainer.run()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 223, in run
+    self.setup()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 67, in setup
+    self._create_trainer()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 126, in _create_trainer
+    training_args = TrainingArguments(
+TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'evaluation_strategy'
+2025-10-06 15:19:15,920 - __main__ - INFO - ================================================================================
+2025-10-06 15:19:15,920 - __main__ - INFO - Legal AI Assistant Training
+2025-10-06 15:19:15,920 - __main__ - INFO - ================================================================================
+2025-10-06 15:19:15,920 - __main__ - WARNING - Detected Windows OS: disabling 4/8-bit quantization and Flash Attention by default. Use --force-quantization to override at your own risk.
+2025-10-06 15:19:15,920 - __main__ - INFO - Model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:19:15,920 - __main__ - INFO - Dataset: nisaar/Articles_Constitution_3300_Instruction_Set
+2025-10-06 15:19:15,920 - __main__ - INFO - Output: ./output_smoke_cpu
+2025-10-06 15:19:15,920 - __main__ - INFO - Epochs: 1
+2025-10-06 15:19:15,920 - __main__ - INFO - Batch size: 1
+2025-10-06 15:19:15,920 - __main__ - INFO - Learning rate: 0.0002
+2025-10-06 15:19:15,920 - training.trainer - INFO - ================================================================================
+2025-10-06 15:19:15,920 - training.trainer - INFO - Starting Legal AI Training Pipeline
+2025-10-06 15:19:15,925 - training.trainer - INFO - ================================================================================
+2025-10-06 15:19:15,925 - training.trainer - INFO - Setting up trainer...
+2025-10-06 15:19:15,925 - models.model_factory - INFO - Loading base model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:19:15,926 - models.model_factory - INFO - Quantization disabled: not passing quantization_config to from_pretrained
+2025-10-06 15:19:18,138 - models.model_factory - INFO - Model loaded successfully: MistralForCausalLM
+2025-10-06 15:19:18,138 - models.model_factory - INFO - Model device: cpu
+2025-10-06 15:19:18,138 - models.model_factory - INFO - Preparing model for training...
+2025-10-06 15:19:18,139 - models.model_factory - INFO - Skipping k-bit preparation because quantization is disabled
+2025-10-06 15:19:21,451 - models.model_factory - INFO - Trainable params: 6,815,744 || All params: 7,248,547,840 || Trainable%: 0.0940%
+2025-10-06 15:19:21,451 - training.trainer - INFO - Preparing dataset...
+2025-10-06 15:19:21,451 - data.data_processor - INFO - Loading dataset nisaar/Articles_Constitution_3300_Instruction_Set (split: train) via DatasetLoader
+2025-10-06 15:19:21,451 - data.dataset_loader - INFO - Loading dataset from Hub: nisaar/Articles_Constitution_3300_Instruction_Set
+2025-10-06 15:19:27,502 - data.dataset_loader - INFO - Successfully loaded 3311 examples
+2025-10-06 15:19:27,502 - data.data_processor - INFO - Dataset validation passed
+2025-10-06 15:19:27,502 - data.data_processor - INFO - Splitting dataset (train: 0.9, val: 0.1, test: 0.0)
+2025-10-06 15:19:27,502 - data.data_processor - INFO - train: 2979 examples
+2025-10-06 15:19:27,502 - data.data_processor - INFO - validation: 332 examples
+2025-10-06 15:19:27,518 - data.data_processor - INFO - Tokenizing dataset...
+2025-10-06 15:19:27,575 - data.data_processor - INFO - Tokenization complete. Dataset size: 2979
+2025-10-06 15:19:27,575 - data.data_processor - INFO - Tokenizing dataset...
+2025-10-06 15:19:27,622 - data.data_processor - INFO - Tokenization complete. Dataset size: 332
+2025-10-06 15:19:27,622 - training.trainer - INFO - Dataset preparation complete
+2025-10-06 15:19:27,622 - training.trainer - INFO - Creating trainer...
+2025-10-06 15:19:27,622 - __main__ - ERROR - Training failed: --load_best_model_at_end requires the save and eval strategy to match, but found
+- Evaluation strategy: no
+- Save strategy: steps
+Traceback (most recent call last):
+  File "D:\Code\The_Law_Book\scripts\train.py", line 297, in main
+    trainer.run()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 223, in run
+    self.setup()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 67, in setup
+    self._create_trainer()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 126, in _create_trainer
+    training_args = TrainingArguments(
+  File "<string>", line 135, in __init__
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\training_args.py", line 1689, in __post_init__
+    raise ValueError(
+ValueError: --load_best_model_at_end requires the save and eval strategy to match, but found
+- Evaluation strategy: no
+- Save strategy: steps
+2025-10-06 15:20:04,294 - __main__ - INFO - ================================================================================
+2025-10-06 15:20:04,294 - __main__ - INFO - Legal AI Assistant Training
+2025-10-06 15:20:04,294 - __main__ - INFO - ================================================================================
+2025-10-06 15:20:04,294 - __main__ - WARNING - Detected Windows OS: disabling 4/8-bit quantization and Flash Attention by default. Use --force-quantization to override at your own risk.
+2025-10-06 15:20:04,294 - __main__ - INFO - Model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:20:04,294 - __main__ - INFO - Dataset: nisaar/Articles_Constitution_3300_Instruction_Set
+2025-10-06 15:20:04,294 - __main__ - INFO - Output: ./output_smoke_cpu
+2025-10-06 15:20:04,294 - __main__ - INFO - Epochs: 1
+2025-10-06 15:20:04,294 - __main__ - INFO - Batch size: 1
+2025-10-06 15:20:04,294 - __main__ - INFO - Learning rate: 0.0002
+2025-10-06 15:20:04,294 - training.trainer - INFO - ================================================================================
+2025-10-06 15:20:04,294 - training.trainer - INFO - Starting Legal AI Training Pipeline
+2025-10-06 15:20:04,294 - training.trainer - INFO - ================================================================================
+2025-10-06 15:20:04,310 - training.trainer - INFO - Setting up trainer...
+2025-10-06 15:20:04,310 - models.model_factory - INFO - Loading base model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:20:04,310 - models.model_factory - INFO - Quantization disabled: not passing quantization_config to from_pretrained
+2025-10-06 15:20:06,669 - models.model_factory - INFO - Model loaded successfully: MistralForCausalLM
+2025-10-06 15:20:06,669 - models.model_factory - INFO - Model device: cpu
+2025-10-06 15:20:06,669 - models.model_factory - INFO - Preparing model for training...
+2025-10-06 15:20:06,672 - models.model_factory - INFO - Skipping k-bit preparation because quantization is disabled
+2025-10-06 15:20:10,426 - models.model_factory - INFO - Trainable params: 6,815,744 || All params: 7,248,547,840 || Trainable%: 0.0940%
+2025-10-06 15:20:10,437 - training.trainer - INFO - Preparing dataset...
+2025-10-06 15:20:10,437 - data.data_processor - INFO - Loading dataset nisaar/Articles_Constitution_3300_Instruction_Set (split: train) via DatasetLoader
+2025-10-06 15:20:10,437 - data.dataset_loader - INFO - Loading dataset from Hub: nisaar/Articles_Constitution_3300_Instruction_Set
+2025-10-06 15:20:15,938 - data.dataset_loader - INFO - Successfully loaded 3311 examples
+2025-10-06 15:20:15,938 - data.data_processor - INFO - Dataset validation passed
+2025-10-06 15:20:15,938 - data.data_processor - INFO - Splitting dataset (train: 0.9, val: 0.1, test: 0.0)
+2025-10-06 15:20:15,947 - data.data_processor - INFO - train: 2979 examples
+2025-10-06 15:20:15,947 - data.data_processor - INFO - validation: 332 examples
+2025-10-06 15:20:15,947 - data.data_processor - INFO - Tokenizing dataset...
+2025-10-06 15:20:16,001 - data.data_processor - INFO - Tokenization complete. Dataset size: 2979
+2025-10-06 15:20:16,001 - data.data_processor - INFO - Tokenizing dataset...
+2025-10-06 15:20:16,046 - data.data_processor - INFO - Tokenization complete. Dataset size: 332
+2025-10-06 15:20:16,046 - training.trainer - INFO - Dataset preparation complete
+2025-10-06 15:20:16,046 - training.trainer - INFO - Creating trainer...
+2025-10-06 15:20:16,048 - __main__ - ERROR - Training failed: TrainingArguments.__init__() got an unexpected keyword argument 'evaluation_strategy'
+Traceback (most recent call last):
+  File "D:\Code\The_Law_Book\scripts\train.py", line 297, in main
+    trainer.run()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 223, in run
+    self.setup()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 67, in setup
+    self._create_trainer()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 126, in _create_trainer
+    training_args = TrainingArguments(
+TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'evaluation_strategy'
+2025-10-06 15:20:47,907 - __main__ - INFO - ================================================================================
+2025-10-06 15:20:47,907 - __main__ - INFO - Legal AI Assistant Training
+2025-10-06 15:20:47,907 - __main__ - INFO - ================================================================================
+2025-10-06 15:20:47,907 - __main__ - WARNING - Detected Windows OS: disabling 4/8-bit quantization and Flash Attention by default. Use --force-quantization to override at your own risk.
+2025-10-06 15:20:47,907 - __main__ - INFO - Model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:20:47,907 - __main__ - INFO - Dataset: nisaar/Articles_Constitution_3300_Instruction_Set
+2025-10-06 15:20:47,907 - __main__ - INFO - Output: ./output_smoke_cpu
+2025-10-06 15:20:47,907 - __main__ - INFO - Epochs: 1
+2025-10-06 15:20:47,907 - __main__ - INFO - Batch size: 1
+2025-10-06 15:20:47,907 - __main__ - INFO - Learning rate: 0.0002
+2025-10-06 15:20:47,907 - training.trainer - INFO - ================================================================================
+2025-10-06 15:20:47,907 - training.trainer - INFO - Starting Legal AI Training Pipeline
+2025-10-06 15:20:47,907 - training.trainer - INFO - ================================================================================
+2025-10-06 15:20:47,907 - training.trainer - INFO - Setting up trainer...
+2025-10-06 15:20:47,907 - models.model_factory - INFO - Loading base model: mistralai/Mistral-7B-Instruct-v0.2
+2025-10-06 15:20:47,907 - models.model_factory - INFO - Quantization disabled: not passing quantization_config to from_pretrained
+2025-10-06 15:20:50,810 - models.model_factory - INFO - Model loaded successfully: MistralForCausalLM
+2025-10-06 15:20:50,810 - models.model_factory - INFO - Model device: cpu
+2025-10-06 15:20:50,810 - models.model_factory - INFO - Preparing model for training...
+2025-10-06 15:20:50,821 - models.model_factory - INFO - Skipping k-bit preparation because quantization is disabled
+2025-10-06 15:20:54,163 - models.model_factory - INFO - Trainable params: 6,815,744 || All params: 7,248,547,840 || Trainable%: 0.0940%
+2025-10-06 15:20:54,163 - training.trainer - INFO - Preparing dataset...
+2025-10-06 15:20:54,163 - data.data_processor - INFO - Loading dataset nisaar/Articles_Constitution_3300_Instruction_Set (split: train) via DatasetLoader
+2025-10-06 15:20:54,163 - data.dataset_loader - INFO - Loading dataset from Hub: nisaar/Articles_Constitution_3300_Instruction_Set
+2025-10-06 15:20:59,658 - data.dataset_loader - INFO - Successfully loaded 3311 examples
+2025-10-06 15:20:59,659 - data.data_processor - INFO - Dataset validation passed
+2025-10-06 15:20:59,659 - data.data_processor - INFO - Splitting dataset (train: 0.9, val: 0.1, test: 0.0)
+2025-10-06 15:20:59,659 - data.data_processor - INFO - train: 2979 examples
+2025-10-06 15:20:59,659 - data.data_processor - INFO - validation: 332 examples
+2025-10-06 15:20:59,665 - data.data_processor - INFO - Tokenizing dataset...
+2025-10-06 15:20:59,700 - data.data_processor - INFO - Tokenization complete. Dataset size: 2979
+2025-10-06 15:20:59,700 - data.data_processor - INFO - Tokenizing dataset...
+2025-10-06 15:20:59,736 - data.data_processor - INFO - Tokenization complete. Dataset size: 332
+2025-10-06 15:20:59,736 - training.trainer - INFO - Dataset preparation complete
+2025-10-06 15:20:59,736 - training.trainer - INFO - Creating trainer...
+2025-10-06 15:21:02,603 - training.trainer - INFO - Trainer created
+2025-10-06 15:21:02,603 - training.trainer - INFO - Setup complete
+2025-10-06 15:21:02,603 - training.trainer - INFO - Starting training...
+2025-10-06 15:22:02,798 - __main__ - ERROR - Training failed: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+Traceback (most recent call last):
+  File "D:\Code\The_Law_Book\scripts\train.py", line 297, in main
+    trainer.run()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 226, in run
+    self.train()
+  File "D:\Code\The_Law_Book\training\trainer.py", line 158, in train
+    train_result = self.trainer.train()
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\trainer.py", line 2325, in train
+    return inner_training_loop(
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\trainer.py", line 2618, in _inner_training_loop
+    batch_samples, num_items_in_batch = self.get_batch_samples(epoch_iterator, num_batches, args.device)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\trainer.py", line 5658, in get_batch_samples
+    num_items_in_batch = self._get_num_items_in_batch(batch_samples, device)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\trainer.py", line 5620, in _get_num_items_in_batch
+    num_items_in_batch = sum((batch["labels"].ne(-100)).sum() for batch in batch_samples)
+  File "C:\Users\saura\miniconda3\envs\the_law_book_fresh\lib\site-packages\transformers\trainer.py", line 5620, in <genexpr>
+    num_items_in_batch = sum((batch["labels"].ne(-100)).sum() for batch in batch_samples)
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+

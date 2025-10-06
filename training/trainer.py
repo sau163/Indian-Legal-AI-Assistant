@@ -2,9 +2,7 @@
 import logging
 import os
 from typing import Optional
-from pathlib import Path
-
-import transformers
+ 
 from transformers import (
     TrainingArguments,
     Trainer,
@@ -123,9 +121,21 @@ class LegalAITrainer:
         os.makedirs(self.training_config.output_dir, exist_ok=True)
         
         # Training arguments
-        training_args = TrainingArguments(
-            **self.training_config.to_training_arguments()
-        )
+        training_kwargs = self.training_config.to_training_arguments()
+
+        # If the loaded model is on CPU, force Trainer to not use CUDA even
+        # when a GPU is available on the system. This prevents unexpected
+        # CUDA kernel calls when we're intentionally running on CPU.
+        try:
+            model_device = getattr(self.model, "device", None)
+            if model_device is not None and str(model_device).startswith("cpu"):
+                training_kwargs["no_cuda"] = True
+                logger.info("Model on CPU: forcing Trainer to run with no_cuda=True")
+        except Exception:
+            # If detection fails, don't crash; rely on defaults
+            pass
+
+        training_args = TrainingArguments(**training_kwargs)
         
         # Data collator
         data_collator = DataCollatorForLanguageModeling(
